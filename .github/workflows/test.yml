@@ -1,0 +1,30 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -r scripts/requirements.txt
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Run end-to-end smoke test
+        run: |
+          mkdir sample-documents
+          printf '这是一份用于验证开源构建的示例文档。\n' > sample-documents/example.txt
+          python scripts/run_health_check.py sample-documents --output smoke-output --quiet
+          test -s smoke-output/知识资产体检报告.html
+          test -s smoke-output/文档整改清单.xlsx
+          test -s smoke-output/完整文档台账.xlsx

@@ -1,0 +1,9 @@
+interface:
+  display_name: "知识资产体检"
+  short_description: "本地检查企业知识库文档并生成HTML报告、整改清单和完整台账"
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"
+  brand_color: "#1746A2"
+  default_prompt: "使用 $knowledge-asset-health-check 体检指定的本地文件夹，并生成 HTML 报告和两个 Excel。"
+policy:
+  allow_implicit_invocation: true

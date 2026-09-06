@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# Local runtime and generated deliverables
+.runtime/
+.runtime-*/
+*_knowledge_asset_health_results_*/
+*_知识资产体检结果_*/
