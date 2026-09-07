@@ -1,17 +1,12 @@
 # 知识资产体检 Skill
 
-> 把“知识库里到底有哪些资料、哪些能直接用、先整理什么”一次说清楚。
+> 诊断本地文件夹里的所有文档，一次告诉你“知识库里到底有哪些资料、哪些能直接用、先整理什么”。
 
 一个纯本地运行的 Agent Skill。它用确定性规则盘点企业知识库资料，不让大模型阅读原文，几分钟内生成一份可离线打开的 HTML 体检报告和两份 Excel 清单。
 
 [![Release](https://img.shields.io/github/v/release/s2dongman/knowledge-asset-health-check?label=release)](https://github.com/s2dongman/knowledge-asset-health-check/releases/latest)
 [![Tests](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml/badge.svg)](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-1746A2.svg)](LICENSE)
-
-<p align="center">
-  <img src="docs/images/01-tool-home.png" alt="知识资产体检工具首页" width="44%">
-  <img src="docs/images/03-completed.png" alt="知识资产体检完成页" width="44%">
-</p>
 
 ## 它解决什么问题
 
@@ -44,7 +39,6 @@
 
 企业名称和输出目录都是选填项。默认会在待体检目录旁边新建带时间戳的结果目录。
 
-![选择待体检文件夹并开始执行](docs/images/02-how-to-use.png)
 
 ## Windows 桌面版（无需 Agent）
 
