@@ -106,7 +106,7 @@ OpenClaw 支持直接安装根目录含 `SKILL.md` 的 Git 仓库，详见 [官�
 
 ### TRAE Work
 
-下载 [TRAE Work 专用安装包](https://github.com/s2dongman/knowledge-asset-health-check/releases/download/v1.0.1/knowledge-asset-health-check-traework-v1.0.1.zip)，然后：
+下载 [TRAE Work 专用安装包](https://github.com/s2dongman/knowledge-asset-health-check/releases/download/v1.0.1/knowledge-asset-health-check-root-v1.0.1.zip)，然后：
 
 1. 打开左侧 **插件市场**；
 2. 进入 **技能** 页签，点击右上角 **上传技能**；
