@@ -8,7 +8,7 @@
 [![Tests](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml/badge.svg)](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-1746A2.svg)](LICENSE)
 
-## 它解决什么问题
+## 产品是什么
 
 很多知识库的问题不是“没有文档”，而是资料混在一起：旧版本、重复件、空白文件、命名随意、内容过短，真正可用于搜索或 AI 问答的文档并不清楚。
 
@@ -20,7 +20,7 @@
 
 它不会评价文档里的业务观点是否正确，也不会用大模型“猜”文档质量。
 
-## 特点
+## 产品能做什么
 
 - **隐私优先**：待体检文档不上传、不修改、不删除；
 - **判断可复现**：规则引擎完成诊断，不使用大模型分析正文；
@@ -29,41 +29,7 @@
 - **结果可以直接推进工作**：HTML 看全局，两份 Excel 分别用于整改和建账；
 - **防止误操作**：默认不覆盖历史结果，也不允许把输出写回待体检目录内部。
 
-## 30 秒开始体检
-
-安装 Skill 后，对 Agent 说：
-
-```text
-使用 knowledge-asset-health-check 体检 /path/to/documents
-```
-
-企业名称和输出目录都是选填项。默认会在待体检目录旁边新建带时间戳的结果目录。
-
-
-## Windows 桌面版（无需 Agent）
-
-不使用 Agent、也不想配置 Python，可以直接安装 Windows 桌面版。选择或拖入待体检文件夹后点击开始，工具会在原目录旁生成完整结果，不上传、不修改、不删除原文档。
-
-- 支持 Windows 10 1809 及以上、Windows 11（x64）；
-- 安装后从桌面或开始菜单启动，无需另装 Python；
-- 企业名称可选填，输出位置可自定义；
-- 一次生成离线 HTML 体检报告、文档整改清单和完整文档台账；
-- 完成后可在界面中直接打开报告或结果文件夹。
-
-<p align="center">
-  <img src="docs/images/02-how-to-use.png" alt="Windows 桌面版选择待体检文件夹" width="47%">
-  <img src="docs/images/03-completed.png" alt="Windows 桌面版体检完成页" width="47%">
-</p>
-
-> v1.0.5 延续上图所示操作界面；截图标题栏中的 v1.0.4 是上一版界面标识。
-
-**[下载 Windows 桌面版 v1.0.5（EXE，约 22.13 MB）](https://github.com/s2dongman/knowledge-asset-health-check/releases/download/windows-v1.0.5/KnowledgeAssetHealth_Setup_v1.0.5.exe)**
-
-SHA-256：`c5773cdbf09228bdb657a2a69d174960f8aedcd8f14974ca032da41ad2688808`
-
-[查看发布说明](https://github.com/s2dongman/knowledge-asset-health-check/releases/tag/windows-v1.0.5)
-
-## 安装到不同 Agent
+## 如何安装 Skill
 
 仓库根目录就是完整 Skill。它包含 Python 脚本，因此平台需要能够访问本机文件并执行本地命令；只有云端对话、无法访问本机目录的平台不能直接完成体检。
 
@@ -75,7 +41,7 @@ SHA-256：`c5773cdbf09228bdb657a2a69d174960f8aedcd8f14974ca032da41ad2688808`
 请从 https://github.com/s2dongman/knowledge-asset-health-check 下载并安装 knowledge-asset-health-check Skill。安装到你的个人 Skill 目录，保留 scripts、references、assets 等全部文件；完成后检查 SKILL.md 能被识别，并告诉我如何调用。
 ```
 
-如果 Agent 无法访问本机目录或不支持安装 Skill，请改用上面的 Windows 桌面版，或按下方对应平台的方式安装。
+如果 Agent 无法访问本机目录或不支持安装 Skill，请使用文末提供的 Windows 桌面版。
 
 ### Codex
 
@@ -191,7 +157,19 @@ python3 scripts/run_health_check.py "/path/to/documents" --company "示例公司
 
 Windows 可把 `python3` 换成 `py -3.12` 或 `python`。
 
-## 你会得到什么
+## 如何使用
+
+安装 Skill 后，对 Agent 说：
+
+```text
+使用 knowledge-asset-health-check 体检 /path/to/documents
+```
+
+企业名称和输出目录都是选填项。默认会在待体检目录旁边新建带时间戳的结果目录。
+
+![选择待体检文件夹并开始执行](docs/images/02-how-to-use.png)
+
+## 使用后能看到什么结果
 
 每次体检生成三个文件：
 
@@ -210,6 +188,29 @@ Windows 可把 `python3` 换成 `py -3.12` 或 `python`。
 ### 3. 完整文档台账
 
 ![完整文档台账 Excel](docs/images/06-inventory-workbook.png)
+
+## Skill 不能用？改用 Windows 桌面版
+
+如果当前 Agent 不支持安装 Skill、不能访问本机文件，或者你不想配置 Python，可以直接安装 Windows 桌面版。选择或拖入待体检文件夹后点击开始，工具会在原目录旁生成完整结果，不上传、不修改、不删除原文档。
+
+- 支持 Windows 10 1809 及以上、Windows 11（x64）；
+- 安装后从桌面或开始菜单启动，无需另装 Python；
+- 企业名称可选填，输出位置可自定义；
+- 一次生成离线 HTML 体检报告、文档整改清单和完整文档台账；
+- 完成后可在界面中直接打开报告或结果文件夹。
+
+<p align="center">
+  <img src="docs/images/02-how-to-use.png" alt="Windows 桌面版选择待体检文件夹" width="47%">
+  <img src="docs/images/03-completed.png" alt="Windows 桌面版体检完成页" width="47%">
+</p>
+
+> v1.0.5 延续上图所示操作界面；截图标题栏中的 v1.0.4 是上一版界面标识。
+
+**[下载 Windows 桌面版 v1.0.5（EXE，约 22.13 MB）](https://github.com/s2dongman/knowledge-asset-health-check/releases/download/windows-v1.0.5/KnowledgeAssetHealth_Setup_v1.0.5.exe)**
+
+SHA-256：`c5773cdbf09228bdb657a2a69d174960f8aedcd8f14974ca032da41ad2688808`
+
+[查看发布说明](https://github.com/s2dongman/knowledge-asset-health-check/releases/tag/windows-v1.0.5)
 
 ## 隐私与运行边界
 
