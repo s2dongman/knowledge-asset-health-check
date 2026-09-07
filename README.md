@@ -46,9 +46,42 @@
 
 ![选择待体检文件夹并开始执行](docs/images/02-how-to-use.png)
 
+## Windows 桌面版（无需 Agent）
+
+不使用 Agent、也不想配置 Python，可以直接安装 Windows 桌面版。选择或拖入待体检文件夹后点击开始，工具会在原目录旁生成完整结果，不上传、不修改、不删除原文档。
+
+- 支持 Windows 10 1809 及以上、Windows 11（x64）；
+- 安装后从桌面或开始菜单启动，无需另装 Python；
+- 企业名称可选填，输出位置可自定义；
+- 一次生成离线 HTML 体检报告、文档整改清单和完整文档台账；
+- 完成后可在界面中直接打开报告或结果文件夹。
+
+<p align="center">
+  <img src="docs/images/02-how-to-use.png" alt="Windows 桌面版选择待体检文件夹" width="47%">
+  <img src="docs/images/03-completed.png" alt="Windows 桌面版体检完成页" width="47%">
+</p>
+
+> v1.0.5 延续上图所示操作界面；截图标题栏中的 v1.0.4 是上一版界面标识。
+
+**[下载 Windows 桌面版 v1.0.5（EXE，约 22.13 MB）](https://github.com/s2dongman/knowledge-asset-health-check/releases/download/windows-v1.0.5/KnowledgeAssetHealth_Setup_v1.0.5.exe)**
+
+SHA-256：`c5773cdbf09228bdb657a2a69d174960f8aedcd8f14974ca032da41ad2688808`
+
+[查看发布说明](https://github.com/s2dongman/knowledge-asset-health-check/releases/tag/windows-v1.0.5)
+
 ## 安装到不同 Agent
 
 仓库根目录就是完整 Skill。它包含 Python 脚本，因此平台需要能够访问本机文件并执行本地命令；只有云端对话、无法访问本机目录的平台不能直接完成体检。
+
+### 最省事：直接告诉 Agent 安装
+
+对于能够联网、读写本机文件并执行本地命令的 Agent，可以直接把下面这段话发给它：
+
+```text
+请从 https://github.com/s2dongman/knowledge-asset-health-check 下载并安装 knowledge-asset-health-check Skill。安装到你的个人 Skill 目录，保留 scripts、references、assets 等全部文件；完成后检查 SKILL.md 能被识别，并告诉我如何调用。
+```
+
+如果 Agent 无法访问本机目录或不支持安装 Skill，请改用上面的 Windows 桌面版，或按下方对应平台的方式安装。
 
 ### Codex
 
