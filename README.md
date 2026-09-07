@@ -1,60 +1,214 @@
 # 知识资产体检 Skill
 
-一个纯本地运行的 Codex Skill，用确定性规则引擎盘点企业知识库资料，生成可离线查看的 HTML 体检报告和两份 Excel 清单。
+> 把“知识库里到底有哪些资料、哪些能直接用、先整理什么”一次说清楚。
+
+一个纯本地运行的 Agent Skill。它用确定性规则盘点企业知识库资料，不让大模型阅读原文，几分钟内生成一份可离线打开的 HTML 体检报告和两份 Excel 清单。
+
+[![Release](https://img.shields.io/github/v/release/s2dongman/knowledge-asset-health-check?label=release)](https://github.com/s2dongman/knowledge-asset-health-check/releases/latest)
+[![Tests](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml/badge.svg)](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-1746A2.svg)](LICENSE)
+
+<p align="center">
+  <img src="docs/images/01-tool-home.png" alt="知识资产体检工具首页" width="44%">
+  <img src="docs/images/03-completed.png" alt="知识资产体检完成页" width="44%">
+</p>
+
+## 它解决什么问题
+
+很多知识库的问题不是“没有文档”，而是资料混在一起：旧版本、重复件、空白文件、命名随意、内容过短，真正可用于搜索或 AI 问答的文档并不清楚。
+
+本工具会回答三个问题：
+
+1. **现在有什么**：形成完整文档台账；
+2. **哪些可以入库**：给出“可直接使用、整理后使用、暂不能使用”判断；
+3. **下一步先做什么**：按优先级生成可执行的整改清单。
+
+它不会评价文档里的业务观点是否正确，也不会用大模型“猜”文档质量。
 
 ## 特点
 
-- 不使用大模型分析文档；
-- 待体检文档不上传，不修改，不删除；
-- 支持 DOCX、PDF、XLSX、PPTX、TXT 和 Markdown 正文读取；
-- 识别无法解析、空白/过短、乱码、长期未更新、命名不规范、重复与多版本文档；
-- 输出“可直接使用、整理后使用、暂不能使用”及处理优先级；
-- 默认不覆盖历史结果，并阻止把输出写入待体检目录内部。
+- **隐私优先**：待体检文档不上传、不修改、不删除；
+- **判断可复现**：规则引擎完成诊断，不使用大模型分析正文；
+- **覆盖常见格式**：DOCX、PDF、XLSX、PPTX、TXT、Markdown；
+- **自动发现问题**：无法解析、空白/过短、乱码、长期未更新、命名不规范、重复与多版本文档；
+- **结果可以直接推进工作**：HTML 看全局，两份 Excel 分别用于整改和建账；
+- **防止误操作**：默认不覆盖历史结果，也不允许把输出写回待体检目录内部。
 
-## 生成的成果
+## 30 秒开始体检
 
-每次体检会生成：
+安装 Skill 后，对 Agent 说：
 
-1. `知识资产体检报告.html`
-2. `文档整改清单.xlsx`
-3. `完整文档台账.xlsx`
+```text
+使用 knowledge-asset-health-check 体检 /path/to/documents
+```
 
-## 安装
+企业名称和输出目录都是选填项。默认会在待体检目录旁边新建带时间戳的结果目录。
 
-仓库根目录就是完整的 Skill。将本仓库克隆或复制到 Codex Skill 目录：
+![选择待体检文件夹并开始执行](docs/images/02-how-to-use.png)
+
+## 安装到不同 Agent
+
+仓库根目录就是完整 Skill。它包含 Python 脚本，因此平台需要能够访问本机文件并执行本地命令；只有云端对话、无法访问本机目录的平台不能直接完成体检。
+
+### Codex
+
+个人安装：
 
 ```bash
 git clone https://github.com/s2dongman/knowledge-asset-health-check.git \
-  ~/.codex/skills/knowledge-asset-health-check
+  ~/.agents/skills/knowledge-asset-health-check
 ```
 
-重新打开 Codex 后，可以直接调用：
+重新打开 Codex 后调用：
 
 ```text
 使用 $knowledge-asset-health-check 体检 /path/to/documents
 ```
 
-## 直接运行
+也可以在 Codex 中直接说：
 
-即使不使用 Codex，也可以直接运行内置执行器：
-
-```bash
-python3 scripts/run_health_check.py "/path/to/documents" \
-  --company "示例公司"
+```text
+用 $skill-installer 从 GitHub 仓库 s2dongman/knowledge-asset-health-check 安装这个 Skill
 ```
 
-企业名称和输出目录都是可选项。默认会在源目录旁边新建带时间戳的结果目录。
+Codex 当前会从 `~/.agents/skills` 读取个人 Skill，详见 [OpenAI 官方文档](https://developers.openai.com/codex/skills)。
 
-首次运行如果本机缺少解析组件，执行器会在用户缓存目录建立隔离的 Python 环境并安装固定版本依赖。该步骤需要联网，实际文档体检过程不发起网络请求。
+### Claude Code
 
-## 环境要求
+```bash
+git clone https://github.com/s2dongman/knowledge-asset-health-check.git \
+  ~/.claude/skills/knowledge-asset-health-check
+```
+
+重新启动 Claude Code，然后输入：
+
+```text
+/knowledge-asset-health-check 体检 /path/to/documents
+```
+
+Claude Code 的个人 Skill 目录与调用方式见 [官方文档](https://code.claude.com/docs/en/skills)。
+
+### OpenClaw
+
+安装为全局 Skill：
+
+```bash
+openclaw skills install git:s2dongman/knowledge-asset-health-check --global
+```
+
+然后新建一次会话，直接提出体检需求。也可以用下面的命令确认安装状态：
+
+```bash
+openclaw skills info knowledge-asset-health-check
+```
+
+OpenClaw 支持直接安装根目录含 `SKILL.md` 的 Git 仓库，详见 [官方文档](https://docs.openclaw.ai/cli/skills)。
+
+### TRAE Work
+
+下载 [TRAE Work 专用安装包](https://github.com/s2dongman/knowledge-asset-health-check/releases/download/v1.0.1/knowledge-asset-health-check-traework-v1.0.1.zip)，然后：
+
+1. 打开左侧 **插件市场**；
+2. 进入 **技能** 页签，点击右上角 **上传技能**；
+3. 选择刚下载的 ZIP，确认安装并保持启用。
+
+该安装包已按 TRAE Work 的要求把 `SKILL.md` 放在 ZIP 根目录。操作入口与格式要求见 [TRAE 官方文档](https://docs.trae.cn/work_skills)。
+
+### WorkBuddy
+
+本地版可直接安装到个人 Skill 目录：
+
+```bash
+git clone https://github.com/s2dongman/knowledge-asset-health-check.git \
+  ~/.workbuddy/skills/knowledge-asset-health-check
+```
+
+如果当前版本通过界面管理 Skill，则下载 [WorkBuddy 专用安装包](https://github.com/s2dongman/knowledge-asset-health-check/releases/download/v1.0.1/knowledge-asset-health-check-workbuddy-v1.0.1.zip)，进入 **专家·技能·连接器 → 技能 → 添加技能/创建技能** 后导入。安装后重新开始一次对话，再提出体检需求。
+
+WorkBuddy 的开放平台采用 `skills/<skill-name>/SKILL.md` 结构，详见 [官方技能规范](https://open.workbuddy.cn/docs/skill)。
+
+### 豆包工作
+
+豆包工作的不同发布版本中，个人 Skill 入口可能不同：
+
+1. 打开 **技能** 页面，查找 **创建技能 / 上传技能 / 导入技能**；
+2. 如果界面支持 ZIP 导入，上传 [通用根目录安装包](https://github.com/s2dongman/knowledge-asset-health-check/releases/download/v1.0.1/knowledge-asset-health-check-root-v1.0.1.zip)；
+3. 安装后新建会话，并明确要求使用“知识资产体检”技能检查本地文件夹。
+
+目前没有找到豆包工作公开且稳定的第三方 Skill 导入文档。如果你的版本没有上述入口，请使用下方“直接运行”，不要把待体检文档上传到对话中。
+
+### Hermes Agent（爱马仕）
+
+```bash
+git clone https://github.com/s2dongman/knowledge-asset-health-check.git \
+  ~/.hermes/skills/knowledge-asset-health-check
+```
+
+新建会话后调用：
+
+```text
+/knowledge-asset-health-check 体检 /path/to/documents
+```
+
+Hermes 会从 `~/.hermes/skills/` 发现多文件 Skill，详见 [官方文档](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/guides/work-with-skills.md)。
+
+### 其他本地 Agent
+
+只要能够调用本机 Python，就可以克隆仓库后直接运行：
+
+```bash
+git clone https://github.com/s2dongman/knowledge-asset-health-check.git
+cd knowledge-asset-health-check
+python3 scripts/run_health_check.py "/path/to/documents" --company "示例公司"
+```
+
+Windows 可把 `python3` 换成 `py -3.12` 或 `python`。
+
+## 你会得到什么
+
+每次体检生成三个文件：
+
+1. `知识资产体检报告.html`：整体健康度、问题分布、优先建议；
+2. `文档整改清单.xlsx`：逐项列出问题、优先级和建议动作；
+3. `完整文档台账.xlsx`：保留完整文档清册和分类判断。
+
+### 1. 离线 HTML 体检报告
+
+![知识资产体检 HTML 报告](docs/images/04-html-report.png)
+
+### 2. 文档整改清单
+
+![文档整改清单 Excel](docs/images/05-rectification-workbook.png)
+
+### 3. 完整文档台账
+
+![完整文档台账 Excel](docs/images/06-inventory-workbook.png)
+
+## 隐私与运行边界
+
+- 体检过程只读取你指定的本地目录；
+- 文档正文不会被发送给 Agent 或任何远程服务；
+- 第一次运行如果本机缺少解析组件，执行器会在用户缓存目录创建隔离的 Python 环境并安装固定版本依赖，这一步需要联网；
+- 依赖安装完成后，实际文档扫描与报告生成不发起网络请求；
+- 建议先用一份非敏感样例目录试跑，再用于企业资料。
+
+## 反馈、报 Bug 与交流
+
+如果报告里出现误判、漏判，或者你遇到这里没有覆盖的常见文档问题，欢迎添加作者微信 **s2dongman**，备注 **“体检”**。也可以把脱敏后的报告发来，我会尽量给出下一步整理建议。
+
+<p align="center">
+  <img src="docs/images/wechat-qr.jpg" alt="作者申悦的个人微信二维码" width="240">
+  <br>
+  <strong>微信：s2dongman｜备注：体检</strong>
+</p>
+
+## 环境要求与技术说明
 
 - Python 3.9+
 - Windows、macOS 或 Linux
+- 命令行参数、JSON 输出与退出码见 [references/output-contract.md](references/output-contract.md)
 
-命令行参数、JSON 输出与退出码见 [references/output-contract.md](references/output-contract.md)。
-
-## 开发与验证
+开发验证：
 
 ```bash
 python3 -m venv .venv

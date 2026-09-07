@@ -1,6 +1,12 @@
 ---
 name: knowledge-asset-health-check
 description: 对本地企业知识库资料目录执行不使用大模型的知识资产盘点与体检，生成离线 HTML 报告、文档整改清单和完整文档台账。用户要求体检、盘点或诊断本地知识库文档文件夹，或要求生成这三项成果时使用；不用于评价单篇文档的业务正确性。
+display_name: 知识资产体检
+display_name_en: Knowledge Asset Health Check
+description_zh: 纯本地盘点企业知识库文档，生成 HTML 体检报告、文档整改清单和完整文档台账。
+description_en: Audit a local enterprise knowledge folder and generate an HTML health report plus two Excel workbooks without uploading source documents.
+version: 1.0.1
+author: s2dongman
 ---
 
 # 知识资产体检
