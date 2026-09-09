@@ -4,6 +4,8 @@
 
 一个纯本地运行的 Agent Skill。它用确定性规则盘点企业知识库资料，不让大模型阅读原文，几分钟内生成一份可离线打开的 HTML 体检报告和两份 Excel 清单。
 
+如果你更习惯使用桌面软件，可以前往 **[知识资产体检工具官网](https://shenyueai.com)** 下载 Windows 或 macOS 版本，并查看完整安装说明。
+
 [![Release](https://img.shields.io/github/v/release/s2dongman/knowledge-asset-health-check?label=release)](https://github.com/s2dongman/knowledge-asset-health-check/releases/latest)
 [![Tests](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml/badge.svg)](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-1746A2.svg)](LICENSE)
@@ -41,7 +43,7 @@
 请从 https://github.com/s2dongman/knowledge-asset-health-check 下载并安装 knowledge-asset-health-check Skill。安装到你的个人 Skill 目录，保留 scripts、references、assets 等全部文件；完成后检查 SKILL.md 能被识别，并告诉我如何调用。
 ```
 
-如果 Agent 无法访问本机目录或不支持安装 Skill，请使用文末提供的 Windows 桌面版。
+如果 Agent 无法访问本机目录或不支持安装 Skill，请使用文末提供的 Windows 或 macOS 桌面版。
 
 ### Codex
 
@@ -187,9 +189,13 @@ Windows 可把 `python3` 换成 `py -3.12` 或 `python`。
 
 ![完整文档台账 Excel](docs/images/06-inventory-workbook.png)
 
-## Skill 不能用？改用 Windows 桌面版
+## Skill 不能用？改用桌面版
 
-如果当前 Agent 不支持安装 Skill、不能访问本机文件，或者你不想配置 Python，可以直接安装 Windows 桌面版。选择或拖入待体检文件夹后点击开始，工具会在原目录旁生成完整结果，不上传、不修改、不删除原文档。
+如果当前 Agent 不支持安装 Skill、不能访问本机文件，或者你不想配置 Python，可以直接安装桌面版。Windows 和 macOS 版本均可从 **[知识资产体检工具官网](https://shenyueai.com)** 获取。
+
+### Windows 桌面版
+
+选择或拖入待体检文件夹后点击开始，工具会在原目录旁生成完整结果，不上传、不修改、不删除原文档。
 
 - 支持 Windows 10 1809 及以上、Windows 11（x64）；
 - 安装后从桌面或开始菜单启动，无需另装 Python；
@@ -210,6 +216,33 @@ SHA-256：`c5773cdbf09228bdb657a2a69d174960f8aedcd8f14974ca032da41ad2688808`
 
 [查看发布说明](https://github.com/s2dongman/knowledge-asset-health-check/releases/tag/windows-v1.0.5)
 
+### macOS 桌面版
+
+当前 macOS 测试版适用于 Apple Silicon Mac（M1、M2、M3、M4、M5 及后续芯片），需要 macOS 11 Big Sur 或更高版本。
+
+安装方法：
+
+1. 下载并双击打开 DMG 文件；
+2. 将“知识资产体检工具”拖到右侧的“Applications（应用程序）”文件夹；
+3. 从“应用程序”文件夹启动工具，不要长期在 DMG 窗口中运行。
+
+当前测试版没有购买 Apple Developer 证书，因此第一次启动时可能出现“无法验证开发者”的提示。请先关闭提示，然后打开 **系统设置 → 隐私与安全性**，找到关于“知识资产体检工具”的提示，点击 **仍要打开**，再按系统要求使用登录密码或 Touch ID 确认。完成一次放行后，后续可以像普通应用一样直接打开。
+
+使用方法：
+
+1. 点击“选择资料文件夹”，或者把整个文件夹拖到选择区域；
+2. 企业名称可以不填，不填写时默认使用文件夹名称；
+3. 点击“开始体检”；
+4. 完成后直接打开网页报告、文档整改清单或完整文档台账。
+
+文档只在本机读取和分析，不上传到网络，也不会修改或删除原文档。结果默认保存在待体检文件夹的上一级目录。
+
+**[下载 macOS 桌面版 v1.0.5（DMG，Apple Silicon）](https://shenyueai.com/downloads/KnowledgeAssetHealth_macOS_AppleSilicon_v1.0.5.dmg)**
+
+SHA-256：`fcff51c20aca2b728796d891f8caebf38f50a0f69604081d50b8eae5c6f5ad80`
+
+[前往官网查看完整下载与安装说明](https://shenyueai.com/#download)
+
 ## 隐私与运行边界
 
 - 体检过程只读取你指定的本地目录；
@@ -221,6 +254,8 @@ SHA-256：`c5773cdbf09228bdb657a2a69d174960f8aedcd8f14974ca032da41ad2688808`
 ## 反馈、报 Bug 与交流
 
 如果报告里出现误判、漏判，或者你遇到这里没有覆盖的常见文档问题，欢迎添加作者微信 **s2dongman**，备注 **“体检”**。也可以把脱敏后的报告发来，我会尽量给出下一步整理建议。
+
+桌面版下载、安装说明和产品更新请访问 **[shenyueai.com](https://shenyueai.com)**。
 
 <p align="center">
   <img src="docs/images/wechat-qr.jpg" alt="作者申悦的个人微信二维码" width="240">
