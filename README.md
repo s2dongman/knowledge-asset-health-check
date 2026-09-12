@@ -4,7 +4,7 @@
 
 一个纯本地运行的 Agent Skill。它用确定性规则盘点企业知识库资料，不让大模型阅读原文，几分钟内生成一份可离线打开的 HTML 体检报告和两份 Excel 清单。
 
-如果你更习惯使用桌面软件，可以前往 **[知识资产体检工具官网]([https://shenyueai.com](https://shenyueai.com/products/knowledge-health/))** 下载 Windows 或 macOS 版本，并查看完整安装说明。
+如果你更习惯使用桌面软件，可以前往**[知识资产体检工具官网](https://shenyueai.com/products/knowledge-health/)** 下载 Windows 或 macOS 版本，并查看完整安装说明。
 
 [![Release](https://img.shields.io/github/v/release/s2dongman/knowledge-asset-health-check?label=release)](https://github.com/s2dongman/knowledge-asset-health-check/releases/latest)
 [![Tests](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml/badge.svg)](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml)
@@ -191,7 +191,7 @@ Windows 可把 `python3` 换成 `py -3.12` 或 `python`。
 
 ## Skill 不能用？改用桌面版
 
-如果当前 Agent 不支持安装 Skill、不能访问本机文件，或者你不想配置 Python，可以直接安装桌面版。Windows 和 macOS 版本均可从 **[知识资产体检工具官网](https://shenyueai.com)** 获取。
+如果当前 Agent 不支持安装 Skill、不能访问本机文件，或者你不想配置 Python，可以直接安装桌面版。Windows 和 macOS 版本均可从 **[知识资产体检工具官网](https://shenyueai.com/products/knowledge-health/)** 获取。
 
 ### Windows 桌面版
 
