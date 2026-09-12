@@ -4,7 +4,7 @@
 
 一个纯本地运行的 Agent Skill。它用确定性规则盘点企业知识库资料，不让大模型阅读原文，几分钟内生成一份可离线打开的 HTML 体检报告和两份 Excel 清单。
 
-如果你更习惯使用桌面软件，可以前往**[知识资产体检工具官网](https://shenyueai.com/products/knowledge-health/)** 下载 Windows 或 macOS 版本，并查看完整安装说明。
+如果你更习惯使用桌面软件，可以前往 **[知识资产体检工具官网](https://shenyueai.com/products/knowledge-health/)** 下载 Windows 或 macOS 版本，并查看完整安装说明。
 
 [![Release](https://img.shields.io/github/v/release/s2dongman/knowledge-asset-health-check?label=release)](https://github.com/s2dongman/knowledge-asset-health-check/releases/latest)
 [![Tests](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml/badge.svg)](https://github.com/s2dongman/knowledge-asset-health-check/actions/workflows/test.yml)
@@ -255,7 +255,7 @@ SHA-256：`fcff51c20aca2b728796d891f8caebf38f50a0f69604081d50b8eae5c6f5ad80`
 
 如果报告里出现误判、漏判，或者你遇到这里没有覆盖的常见文档问题，欢迎添加作者微信 **s2dongman**，备注 **“体检”**。也可以把脱敏后的报告发来，我会尽量给出下一步整理建议。
 
-桌面版下载、安装说明和产品更新请访问 **[知识资产体检工具官网]([https://shenyueai.com](https://shenyueai.com/products/knowledge-health/))**。
+桌面版下载、安装说明和产品更新请访问 **[知识资产体检工具官网](https://shenyueai.com/products/knowledge-health/)** 
 
 <p align="center">
   <img src="docs/images/wechat-qr.jpg" alt="作者申悦的个人微信二维码" width="240">
